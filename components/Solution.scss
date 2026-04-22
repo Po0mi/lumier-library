@@ -1,0 +1,285 @@
+.solution {
+  padding: 8rem 2rem;
+  background-color: var(--background);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      circle,
+      var(--outline-variant) 1px,
+      transparent 1px
+    );
+    background-size: 32px 32px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .solution-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  // ── Header — pushed to the right ──────────────────────────────
+  .solution-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5rem;
+
+    .solution-header-inner {
+      width: 48%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      text-align: right;
+    }
+
+    .solution-eyebrow {
+      font-family: var(--font-synonym);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .solution-title {
+      font-family: var(--font-chillax);
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 0.95;
+      color: var(--on-surface);
+    }
+
+    .solution-subtitle {
+      font-family: var(--font-synonym);
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--on-surface-variant);
+      line-height: 1.8;
+    }
+  }
+
+  // ── Chapter rows ──────────────────────────────────────────────
+  .solution-rows {
+    border-top: 1px solid var(--outline-variant);
+  }
+
+  .chapter-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding: 2.75rem 0;
+    border-bottom: 1px solid var(--outline-variant);
+    cursor: default;
+
+    &:hover {
+      .chapter-num {
+        -webkit-text-stroke-color: var(--primary);
+        color: var(--primary-fixed);
+      }
+      .chapter-title {
+        transform: translateX(6px);
+      }
+    }
+  }
+
+  // Outline display number
+  .chapter-num {
+    font-family: var(--font-chillax);
+    font-size: 5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--outline-variant);
+    transition:
+      -webkit-text-stroke-color 0.35s ease,
+      color 0.35s ease;
+    user-select: none;
+  }
+
+  .chapter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .chapter-method {
+    font-family: var(--font-synonym);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  .chapter-title {
+    font-family: var(--font-chillax);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.1;
+    color: var(--on-surface);
+    transition: transform 0.35s ease;
+  }
+
+  .chapter-desc {
+    font-family: var(--font-synonym);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--on-surface-variant);
+    line-height: 1.75;
+    max-width: 480px;
+  }
+
+  // ── Achievements strip ────────────────────────────────────────
+  .solution-achieve {
+    margin-top: 4rem;
+    background-color: var(--inverse-surface);
+    border-radius: 20px;
+    padding: 3rem 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+
+    .achieve-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .achieve-label {
+      font-family: var(--font-chillax);
+      font-size: 1.25rem;
+      color: var(--inverse-on-surface);
+      white-space: nowrap;
+    }
+
+    .achieve-cta {
+      font-family: var(--font-synonym);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--inverse-surface);
+      background-color: var(--inverse-primary);
+      border-radius: 20px;
+      padding: 0.65rem 1.4rem;
+      text-decoration: none;
+      display: inline-block;
+      align-self: flex-start;
+      transition: background-color 0.25s ease;
+
+      &:hover {
+        background-color: var(--primary-fixed-dim);
+      }
+    }
+
+    .achieve-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 3rem;
+      flex: 1;
+    }
+
+    .achieve-item {
+      font-family: var(--font-synonym);
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(241, 241, 240, 0.7);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      line-height: 1.55;
+    }
+
+    .achieve-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--inverse-primary);
+      flex-shrink: 0;
+      margin-top: 0.42rem;
+    }
+  }
+
+  // ── Tablet (≤ 1024px) ─────────────────────────────────────────
+  @media (max-width: 1024px) {
+    padding: 6rem 2rem;
+
+    .solution-header {
+      .solution-header-inner {
+        width: 60%;
+      }
+    }
+
+    .chapter-num {
+      font-size: 3.5rem;
+    }
+
+    .solution-achieve {
+      gap: 2.5rem;
+      padding: 2.5rem 2.5rem;
+    }
+  }
+
+  // ── Mobile (≤ 767px) ──────────────────────────────────────────
+  @media (max-width: 767px) {
+    padding: 5rem 1.25rem;
+
+    .solution-header {
+      justify-content: flex-start;
+      margin-bottom: 3rem;
+
+      .solution-header-inner {
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    .chapter-row {
+      grid-template-columns: 60px 1fr;
+      gap: 1.25rem;
+      padding: 2rem 0;
+
+      &:hover .chapter-title {
+        transform: none;
+      }
+    }
+
+    .chapter-num {
+      font-size: 2.75rem;
+    }
+
+    .solution-achieve {
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+      margin-top: 3rem;
+      border-radius: 16px;
+
+      .achieve-left {
+        width: 100%;
+      }
+
+      .achieve-cta {
+        align-self: stretch;
+        text-align: center;
+      }
+
+      .achieve-list {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        width: 100%;
+      }
+    }
+  }
+}

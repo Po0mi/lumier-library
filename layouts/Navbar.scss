@@ -1,0 +1,344 @@
+.navbar {
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  right: 0;
+  width: calc(100% - 4rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 68px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.75rem;
+  border-radius: 16px;
+  background-color: var(--surface-container-lowest);
+  border: 1px solid transparent;
+  box-shadow: 0 4px 24px rgba(26, 28, 28, 0.07);
+  box-sizing: border-box;
+  z-index: 1000;
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    backdrop-filter 0.4s ease,
+    height 0.4s ease;
+
+  // ── Scrolled ─────────────────────────────────────────────────
+  &.scrolled {
+    background-color: rgba(249, 249, 248, 0.75);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-color: var(--outline-variant);
+    box-shadow:
+      0 2px 12px rgba(26, 28, 28, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    height: 60px;
+  }
+
+  // ── Logo ─────────────────────────────────────────────────────
+  .logo {
+    font-family: var(--font-chillax);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--on-surface);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    z-index: 1002;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  // ── Desktop nav ───────────────────────────────────────────────
+  .desktop-menu {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+
+    .mobile-cta-item {
+      display: none;
+    }
+
+    .nav-link {
+      font-family: var(--font-synonym);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      padding: 0.45rem 0.9rem;
+      border-radius: 20px;
+      position: relative;
+      white-space: nowrap;
+      transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+
+      &:hover {
+        color: var(--on-surface);
+        background-color: var(--surface-container);
+      }
+
+      // ── Active pill ───────────────────────────────────────────
+      &.active {
+        color: var(--on-primary-container);
+        background-color: var(--primary-fixed);
+        font-weight: 600;
+
+        &:hover {
+          background-color: var(--primary-fixed-dim);
+        }
+      }
+    }
+  }
+
+  // ── CTA button ────────────────────────────────────────────────
+  .cta-btn {
+    font-family: var(--font-synonym);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--on-primary);
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    padding: 0.6rem 1.4rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease;
+
+    &:hover {
+      background-color: var(--on-primary-container);
+      border-color: var(--on-primary-container);
+    }
+  }
+
+  // ── Hamburger ─────────────────────────────────────────────────
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    gap: 5px;
+    z-index: 1002;
+    margin-left: auto;
+
+    .bar {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background-color: var(--on-surface);
+      border-radius: 2px;
+      transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+      transform-origin: center;
+    }
+
+    &.open {
+      .bar:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .bar:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .bar:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+    }
+  }
+
+  // ── Tablet (768px – 1024px) ───────────────────────────────────
+  @media (max-width: 1024px) and (min-width: 769px) {
+    padding: 0 1.25rem;
+
+    .desktop-menu {
+      gap: 0;
+
+      .nav-link {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.7rem;
+      }
+    }
+
+    .cta-btn {
+      font-size: 0.7rem;
+      padding: 0.55rem 1.1rem;
+    }
+  }
+
+  // ── Mobile (≤ 768px) ──────────────────────────────────────────
+  @media (max-width: 768px) {
+    padding: 0 1.25rem;
+    top: 1rem;
+    width: calc(100% - 2rem);
+
+    // Safe area for notched devices
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+
+    .cta-btn {
+      display: none;
+    }
+
+    .mobile-toggle {
+      display: flex;
+    }
+
+    .desktop-menu {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100dvh;
+      z-index: 1001;
+      background-color: var(--inverse-surface);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      padding-bottom: max(2rem, env(safe-area-inset-bottom));
+      gap: 0;
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 0.55s cubic-bezier(0.77, 0, 0.18, 1);
+      pointer-events: none;
+      box-sizing: border-box;
+      overflow-y: auto;
+
+      &.open {
+        clip-path: inset(0 0 0% 0);
+        pointer-events: all;
+
+        li:nth-child(1) .nav-link {
+          transition-delay: 0.12s;
+          opacity: 1;
+          transform: none;
+        }
+        li:nth-child(2) .nav-link {
+          transition-delay: 0.22s;
+          opacity: 1;
+          transform: none;
+        }
+        li:nth-child(3) .nav-link {
+          transition-delay: 0.32s;
+          opacity: 1;
+          transform: none;
+        }
+        li:nth-child(4) .nav-link {
+          transition-delay: 0.42s;
+          opacity: 1;
+          transform: none;
+        }
+        .mobile-cta-item {
+          transition-delay: 0.52s;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      li {
+        width: 100%;
+        text-align: center;
+        margin: 0.25rem 0;
+      }
+
+      .nav-link {
+        display: block;
+        width: 100%;
+        padding: 0.9rem 0;
+        font-family: var(--font-chillax);
+        font-size: clamp(1.6rem, 5vw, 2.5rem);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        color: var(--inverse-on-surface);
+        background: none;
+        border-radius: 0;
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease,
+          color 0.2s ease;
+        // Minimum touch target
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.active {
+          color: var(--inverse-primary);
+          background: none;
+          font-weight: 400;
+        }
+
+        &:hover {
+          color: var(--inverse-primary);
+          background: none;
+        }
+      }
+
+      .mobile-cta-item {
+        display: block;
+        margin-top: 2.5rem;
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+
+        .cta-btn {
+          display: inline-block;
+          color: var(--inverse-surface);
+          background: var(--inverse-on-surface);
+          border-color: var(--inverse-on-surface);
+          font-size: 0.85rem;
+          padding: 0.9rem 2.5rem;
+          min-height: 44px;
+
+          &:hover {
+            background: var(--inverse-primary);
+            border-color: var(--inverse-primary);
+          }
+        }
+      }
+    }
+
+    &.menu-open .logo {
+      color: var(--inverse-on-surface);
+    }
+
+    &.menu-open .mobile-toggle .bar {
+      background-color: var(--inverse-on-surface);
+    }
+  }
+
+  // ── Small phones (≤ 375px) ────────────────────────────────────
+  @media (max-width: 375px) {
+    top: 0.75rem;
+    width: calc(100% - 1.5rem);
+    height: 60px;
+    padding: 0 1rem;
+
+    .logo {
+      font-size: 0.95rem;
+    }
+
+    .mobile-toggle {
+      padding: 0.4rem;
+    }
+  }
+}
