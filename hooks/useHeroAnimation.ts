@@ -27,7 +27,7 @@ export const useHeroAnimation = () => {
         .to(".hero-download-note", { opacity: 1, y: 0, duration: 0.6 }, 0.9)
         .to(
           ".image-wrapper",
-          { opacity: 1, y: 0, duration: 1.1, ease: "power2.out" },
+          { opacity: 1, y: 30, duration: 1.1, ease: "power2.out" },
           0.4,
         );
     }, sectionRef);
